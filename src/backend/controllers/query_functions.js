@@ -1,4 +1,4 @@
-const { getConnection } = require('../database');
+const { getConnection } = require('../backend/database');
 const { generate_notification } = require('../helpers/helpers');
 
 module.exports = {

@@ -1,17 +1,13 @@
-const { remote } = require('electron');
-const mainProcess = remote.require('./main');
-const { create_on_database, getProducts } = mainProcess.query_functions;
+const { Notification } = require('electron');
 
-module.exports = {
+const generate_notification = ( title, message ) => {
     
-    create_product: ( product ) => {
-        // create_on_database( product );
-        create_on_database( product );
-    },
-
-    getAllProducts: () => {
-        getProducts();
-    }
-
+    new Notification({
+        title: title,
+        body: message
+    }).show();
 };
 
+module.exports = {
+    generate_notification
+};

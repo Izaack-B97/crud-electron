@@ -13,6 +13,10 @@ const connection = mysql.createConnection({
 //     console.log('Error al conectar en BD. ' + err);
 // });
 
+if ( connection ) {
+    console.log('Database is connected');
+}
+
 const getConnection = () => {
     return connection;
 };
