@@ -5,9 +5,6 @@ module.exports = {
     create: async (req, res) => {
         
         try {
-
-            console.log(req.body)
-
             const query = `
                 INSERT INTO 
                 productos (nombre, precio, descripcion)
@@ -36,7 +33,6 @@ module.exports = {
     },
 
     getProducts: async (req, res) => {
-        console.log('Hols')
         try {
             
             const conn = await getConnection();
@@ -53,7 +49,7 @@ module.exports = {
                 status: 'failed',
                 message: 'Error al obtener los productos',
                 error
-            })
+            });
         }
 
 

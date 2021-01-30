@@ -6,12 +6,6 @@ const connection = mysql.createConnection({
     password: '',
     database: 'electrondb'
 });
-// .then(() => {
-//     console.log('DATABASES IS CONNECTED');
-// })
-// .catch(err => {
-//     console.log('Error al conectar en BD. ' + err);
-// });
 
 if ( connection ) {
     console.log('Database is connected');

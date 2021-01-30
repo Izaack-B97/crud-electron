@@ -10,14 +10,20 @@ const descriptionProduct = document.querySelector('#descripcion');
 
 (() => {
 
+    areaProductos.innerHTML = "";
+
     // Obtenemos todos los productos
     getToApi('/products')
-        .then(resp => {
-            resp.result.forEach(producto => {
-                areaProductos.innerHTML = `
-                    <li>${ producto.nombre }</li>
+        .then(({ result }) => {
+
+            result.forEach((product, i) => {
+                areaProductos.innerHTML += `
+                    <li class="list-group-item">                        
+                        <h3 class="text-primary">${ i + 1 }. ${ product.nombre }</h3>
+                    </li>
                 `;
-            })
+            });
+
         })
         .catch(err => {
             console.log(err)

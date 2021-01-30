@@ -6,14 +6,14 @@ const createWindow = () => {
     const window = new BrowserWindow({
         width: 800,
         height: 600,
-        // resizable: false,
+        resizable: false,
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true
         }
     });
 
-    // window.setMenu( null );
+    window.setMenu( null );
     window.loadFile('src/frontend/index.html');
 };
 
