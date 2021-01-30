@@ -4,7 +4,7 @@ const createWindow = () => {
 
     // Configuraciones de la ventana
     const window = new BrowserWindow({
-        width: 800,
+        width: 1200,
         height: 600,
         resizable: false,
         webPreferences: {

@@ -1,5 +1,13 @@
 
-#area-products {
-    height: 50%;
-    overflow-y: scroll;
+body {
+    overflow-y: hidden;
+}
+
+#area-products {    
+    /* height: 100vh; */
+    overflow-y: auto;
+}
+
+.pull-right {
+    float: right;
 }

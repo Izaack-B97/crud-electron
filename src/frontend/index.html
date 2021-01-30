@@ -17,13 +17,13 @@
                 </header>
                 <form id="product-form" class="card card-body">
                     <div class="form-group">
-                        <input id="nombre" type="text" class="form-control my-2" name="nombre" placeholder="Product's name" autofocus>
+                        <input id="nombre" type="text" class="form-control my-2" name="nombre" placeholder="Product's name" autofocus required>
                     </div>
                     <div class="form-group">
-                        <input id="precio" type="number" step="any" class="form-control my-2" name="precio" placeholder="Product's price">
+                        <input id="precio" type="number" step="any" class="form-control my-2" name="precio" placeholder="Product's price" required>
                     </div>
                     <div class="form-group">
-                        <textarea name="descripcion" id="descripcion" rows="3" class="form-control my-2" placeholder="Product's description"></textarea>
+                        <textarea name="descripcion" id="descripcion" rows="3" class="form-control my-2" placeholder="Product's description" required></textarea>
                     </div>
                     <button id="btn-guardar" name="btn-save" class="btn btn-primary btn-block">Save</button>
                 </form>
