@@ -1,4 +1,9 @@
-const { getToServer, postToServer, deleteToServer } = require('./helpers/llamadas');
+const { 
+    getToServer, 
+    postToServer, 
+    deleteToServer, 
+    putToServer 
+} = require('./helpers/llamadas');
 
 const productoForm = document.querySelector('#product-form');
 const areaProductos = document.querySelector('#area-products ul');
@@ -7,6 +12,7 @@ const areaProductos = document.querySelector('#area-products ul');
 const nameProduct = document.querySelector('#nombre');
 const priceProduct = document.querySelector('#precio');
 const descriptionProduct = document.querySelector('#descripcion');
+const idProduct = document.querySelector('#id');
 
 let editar = false;
 
@@ -17,8 +23,6 @@ const renderProductos = () => {
     getToServer('/products')
         .then(({ result }) => {
             
-            // console.log( result );
-
             result.forEach((product, i) => {
                 areaProductos.innerHTML += `
                     <li class="list-group-item">                        
@@ -34,6 +38,10 @@ const renderProductos = () => {
                     </li>
                 `;
             });
+
+            setTimeout(() => {
+                areaProductos.classList.add = "animate__animated animate__bounce";
+            }, 2500);
 
             // Acciones del boton deleted
             const btnsDeleted = document.getElementsByClassName('btn-outline-danger');
@@ -60,6 +68,7 @@ const renderProductos = () => {
                         .then(resp => {
                             const producto = resp.result[0];
                             
+                            idProduct.value = id;
                             nameProduct.value = producto.nombre;
                             priceProduct.value = producto.precio;
                             descriptionProduct.value = producto.descripcion;
@@ -89,10 +98,31 @@ const renderProductos = () => {
         };
         
         if (editar) {
-            console.log('Editando . . .')
-            // TODO: Agregar la funcionalidad de actualizacion
+
+            const datos = {
+                nombre: nameProduct.value,
+                precio: parseFloat(priceProduct.value),
+                descripcion: descriptionProduct.value
+            };
+
+            putToServer(`products/${ idProduct.value }`, datos)
+                .then(resp => {
+                    console.log(resp)
+                    renderProductos();
+                    
+                    nameProduct.value = "";
+                    priceProduct.value = "";
+                    descriptionProduct.value = "";
+
+                    editar = false;
+
+                })
+                .catch(err => {
+                    console.log( err );
+                });
+
         } else {
-            postToServer('/products', newProduct)
+            postToServer('products', newProduct)
                 .then(resp => {
                     // console.log(resp);
                     renderProductos();
